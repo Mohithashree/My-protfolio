@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      line-height: 1.6;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    section {
+      padding: 20px;
+      background: white;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .bio-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .bio-image img {
+      width: 200px;
+      border-radius: 50%;
+    }
+    .skills {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .skill-icons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .icon {
+      font-size: 30px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .icon:hover {
+      transform: translateY(-10px);
+    }
+    #skill-name {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .project-card {
+      position: relative;
+      background: #eee;
+      padding: 20px;
+      margin: 10px 0;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .project-card .hover-link {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #444;
+      color: white;
+      text-align: center;
+      transition: top 0.4s ease;
+      padding: 10px 0;
+    }
+    .project-card:hover .hover-link {
+      top: 0;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    button {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    button:hover {
+      background: #555;
+    }
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .bio-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Mohitha Shree</h1>
+    <nav>
+      <a href="#bio">Bio</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="bio">
+    <div class="bio-container">
+      <div class="bio-image">
+        <img src="profile.jpg" alt="Profile Image" />
+      </div>
+      <div class="skills">
+        <h2>Skills</h2>
+        <div class="skill-icons">
+          <div class="icon" data-skill="HTML">🌐</div>
+          <div class="icon" data-skill="CSS">🎨</div>
+          <div class="icon" data-skill="JavaScript">💻</div>
+          <div class="icon" data-skill="DBMS">☕</div>
+        </div>
+        <div id="skill-name"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-card" data-link="https://github.com/Mohithashree/Defect-Tracker">
+      <p>Defect Tracker</p>
+      <P>HTML,CSS,JavaScript,MongoDB</P>
+      <div class="hover-link">View GitHub</div>
+    </div>
+    <div class="project-card" data-link="https://github.com/Mohithashree/E-waste-Facility-Locator">
+      <p>E-waste Facility Locator</p>
+      <p>HTML,CSS,JavaScript,PHP</p>
+      <div class="hover-link">View GitHub</div>
+      </div>
+    <div class="project-card" data-link="https://github.com/Mohithashree/HeartDiseaseDatasetPreprocessing">
+      <p>HeartDisease Dataset Preprocessing</p>
+      <p>Python</p>
+      <div class="hover-link">View GitHub</div>
+    </div>
+    <div class="project-card" data-link="https://github.com/Mohithashree/Course-Registration-System">
+      <p>Course Registration System</p>
+      <p>HTML,CSS,SQL</p>
+      <div class="hover-link">View GitHub</div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <h2>Language Known</h2>
+    <ul>
+      <li>HTML,CSS</li>
+      <li>JavaScript</li>
+      <li>SQL</li>
+      <li>Python</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: mohithasuresh142@example.com</p>
+    <p>Phone: 9342642092</p>
+    <p>GitHub: <a href="https://github.com/Mohithashree" target="_blank">yourprofile</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/mohithashree-suresh-a1366b31b/" target="_blank">yourprofile</a></p>
+  </section>
+
+  <section id="resume">
+    <button onclick="downloadResume()">Download Resume</button>
+  </section>
+
+  <script>
+    // Hover Skill Name Display
+    const icons = document.querySelectorAll('.icon');
+    const skillName = document.getElementById('skill-name');
+
+    icons.forEach(icon => {
+      icon.addEventListener('mouseover', () => {
+        skillName.textContent = icon.getAttribute('data-skill');
+      });
+      icon.addEventListener('mouseout', () => {
+        skillName.textContent = '';
+      });
+    });
+
+    // Project Card Click
+    const projects = document.querySelectorAll('.project-card');
+    projects.forEach(card => {
+      card.addEventListener('click', () => {
+        const link = card.getAttribute('data-link');
+        window.open(link, '_blank');
+      });
+    });
+
+    // Resume Download
+    function downloadResume() {
+      // Change this to your actual resume file if available
+      window.open('resume.pdf', '_blank');
+    }
+  </script>
+
+</body>
+</html>
